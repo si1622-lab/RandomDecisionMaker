@@ -2,25 +2,25 @@ import random
 import time
 import streamlit as st
 
-# 페이지 기본 설정 (웹 브라우저 탭 타이틀 및 아이콘)
+# 1. 페이지 기본 설정 (웹 브라우저 탭 제목 및 아이콘)
 st.set_page_config(
     page_title="인생의 결정 장애 해결사 & AI 룰렛",
     page_icon="🎯",
     layout="centered"
 )
 
-# 메인 타이틀 및 안내 문구
+# 2. 메인 화면 타이틀 및 설명
 st.title("🎯 인생의 결정 장애 해결사!")
 st.caption("선택하기 힘들 땐 AI 룰렛에게 맡겨보세요!")
 
-# 사이드바 - 테마 선택
+# 3. 사이드바 - 테마 선택 기능
 st.sidebar.header("⚙️ 룰렛 설정")
 option = st.sidebar.selectbox(
     "어떤 결정을 내릴까요?",
     ["🍱 오늘 점심 메뉴", "🎮 주말에 할 일", "✏️ 직접 입력하기"]
 )
 
-# 선택한 테마에 따른 기본 후보 목록 제공
+# 4. 선택한 테마에 따른 기본 후보 데이터 설정
 if option == "🍱 오늘 점심 메뉴":
     default_candidates = "제육볶음, 돈까스, 마라탕, 김치찌개, 초밥, 햄버거"
 elif option == "🎮 주말에 할 일":
@@ -28,30 +28,30 @@ elif option == "🎮 주말에 할 일":
 else:
     default_candidates = ""
 
-# 후보 입력 창 (쉼표로 구분)
+# 5. 후보 입력 상자 (쉼표로 구분하여 입력)
 user_input = st.text_area(
-    "후보 목록을 입력하세요:",
+    "후보 목록을 입력하세요 (쉼표로 구분):",
     value=default_candidates,
     height=150
 )
 
-# 룰렛 실행 버튼
+# 6. 추첨 실행 버튼 및 예외 처리
 if st.button("🎲 운명의 선택 실행!", use_container_width=True):
-    # 예외 처리: 입력값을 쉼표 기준으로 나눈 뒤 공백 제거 및 빈 값 제외
+    # 예외 처리: 입력받은 문자열을 쉼표 기준으로 나누고, 양쪽 공백 제거 후 빈 값 제외
     candidates = [item.strip() for item in user_input.split(",") if item.strip()]
     
-    # 예외 처리: 입력된 후보가 없을 때 안내 메시지 출력
+    # 예외 처리: 사용자가 후보를 전혀 입력하지 않았을 경우 경고 문구 출력
     if not candidates:
         st.warning("⚠️ 선택할 후보를 하나 이상 입력해 주세요!")
     else:
-        # 긴장감을 주는 로딩 연출
+        # 긴장감을 주는 로딩 효과 연출
         with st.spinner("AI가 당신의 운명을 심도 있게 분석 중입니다..."):
             time.sleep(1.5)
         
-        # 무작위 추첨
+        # 무작위 추첨 실행
         selected = random.choice(candidates)
         
-        # 성공 연출 및 결과 출력
+        # 결과 및 풍선 애니메이션 효과 출력
         st.balloons()
         st.success("🎉 결정 완료!")
         st.markdown(f"### 👑 오늘 당신의 선택은: **[{selected}]** 입니다!")
