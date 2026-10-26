@@ -1,0 +1,42 @@
+import streamlit as st
+import random
+import time
+
+st.set_page_config(page_title="운명의 룰렛", page_icon="🎯")
+
+st.title("🎯 인생의 결정 장애 해결사!")
+st.caption("선택하기 힘들 땐 AI 룰렛에게 맡겨보세요!")
+
+# 테마 선택
+option = st.selectbox("어떤 결정을 내릴까요?", ["🍱 오늘 점심 메뉴", "🎮 주말에 할 일", "✏️ 직접 입력하기"])
+
+# 후보지 설정
+if option == "🍱 오늘 점심 메뉴":
+    default_candidates = "제육볶음, 돈까스, 마라탕, 김치찌개, 초밥, 햄버거"
+elif option == "🎮 주말에 할 일":
+    default_candidates = "밀린 OTT 보기, 카페 가서 공부, 침대와 일체화, 친구 만나기, 운동하기"
+else:
+    default_candidates = ""
+
+user_input = st.text_area("후보들을 쉼표(,)로 구분해서 입력하세요:", value=default_candidates)
+
+# 추첨 버튼
+if st.button("🎲 운명의 선택 실행!"):
+    # 예외 처리: 입력값이 비어있는지 확인
+    candidates = [item.strip() for item in user_input.split(",") if item.strip()]
+    
+    if not candidates:
+        st.warning("⚠️ 선택할 후보를 하나 이상 입력해주세요!")
+    else:
+        # 긴장감 조성을 위한 로딩 효과
+        with st.spinner("AI가 당신의 운명을 심도 있게 분석 중입니다..."):
+            time.sleep(2)
+        
+        # 무작위 추첨
+        selected = random.choice(candidates)
+        
+        # 결과 및 효과 출력
+        st.balloons()
+        st.success("🎉 결정 완료!")
+        st.markdown(f"### 👑 오늘 당신의 선택은: **[{selected}]** 입니다!")
+        st.info(f"💡 팁: 결과가 맘에 안 든다면... 한 번 더 누르는 것도 당신의 운명입니다!")
