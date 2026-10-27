@@ -298,4 +298,14 @@ if st.button("🎲 운명의 선택 실행!", use_container_width=True):
             }
             
             search_keyword = keyword_map.get(selected, selected)
-            search_query = f"{location} {search_keyword
+            search_query = f"{location} {search_keyword}"
+            encoded_query = urllib.parse.quote(search_query)
+            map_url = f"https://map.kakao.com/link/search/{encoded_query}"
+            
+            st.balloons()
+            st.success("🎉 결정 완료!")
+            st.markdown(f"### 📍 현재 위치: **{location}**")
+            st.markdown(f"### 👑 오늘 당신의 선택은: **[{selected}]** 입니다!")
+            
+            st.markdown(f"👉 [🔍 '{location} {search_keyword}' 카카오맵에서 추천 장소 검색하기]({map_url})")
+            st.info("💡 팁: 결과가 맘에 안 든다면... 한 번 더 누르는 것도 당신의 운명입니다!")
