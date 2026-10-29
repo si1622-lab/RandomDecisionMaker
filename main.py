@@ -4,40 +4,27 @@ import time
 import urllib.parse
 import streamlit as st
 
-# 1. 페이지 기본 설정 (검색 키워드 정면 배치)
+# 1. 페이지 기본 설정
 st.set_page_config(
     page_title="결정장애 해결사 | AI 룰렛 & 오늘 메뉴 및 주말 놀거리 추천",
     page_icon="🎯",
     layout="centered"
 )
 
-# 💡 구글 검색 로봇(SEO) 최적화를 위한 메타 태그 주입
+# 💡 구글 검색 로봇(SEO) 최적화 메타 태그 (화면에 글자가 출력되지 않도록 수정 완료)
 seo_html = """
-    <!-- 구글 검색 로봇용 메타태그 -->
     <meta name="description" content="인생의 결정장애 해결사! 오늘 점심 메뉴, 저녁 메뉴, 주말 할거리 및 데이트 코스가 고민될 때 AI 룰렛으로 한 번에 결정하고 카카오맵 위치 검색까지 해보세요.">
     <meta name="keywords" content="결정장애 해결사, 결정장애, AI 룰렛, 메뉴 추천, 오늘 뭐먹지, 주말에 뭐하지, 점심 추천, 룰렛 추천">
     <meta name="author" content="결정장애 해결사">
-    
-    # Open Graph (카톡/소셜 미디어 공유 및 구글 스니펫 노출용)
     <meta property="og:type" content="website">
     <meta property="og:title" content="결정장애 해결사 - AI 룰렛 & 위치 기반 추천">
     <meta property="og:description" content="결정하기 힘들 땐 AI 룰렛에게 맡겨보세요! 먹거리/놀거리 100종 데이터 및 카카오맵 위치 검색 연동">
 """
 st.markdown(seo_html, unsafe_allow_html=True)
 
-# 메인 타이틀
+# 2. 메인 타이틀 및 안내 문구
 st.title("🎯 인생의 결정장애 해결사!")
 st.caption("선택하기 힘들 땐 먹거리/할거리를 추천받고 위치와 함께 AI 룰렛을 돌려보세요!")
-# 1. 페이지 기본 설정
-st.set_page_config(
-    page_title="인생의 결정 장애 해결사 & AI 룰렛",
-    page_icon="🎯",
-    layout="centered"
-)
-
-st.title("🎯 인생의 결정 장애 해결사!")
-st.caption("선택하기 힘들 땐 먹거리/할거리를 추천받고 위치와 함께 AI 룰렛을 돌려보세요!")
-
 # 2. 사이드바 - 테마 선택
 st.sidebar.header("⚙️ 룰렛 설정")
 option = st.sidebar.selectbox(
