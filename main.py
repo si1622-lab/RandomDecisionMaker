@@ -20,6 +20,19 @@ seo_html = """
     <meta property="og:title" content="결정장애 해결사 - AI 룰렛 & 위치 기반 추천">
     <meta property="og:description" content="결정하기 힘들 땐 AI 룰렛에게 맡겨보세요! 먹거리/놀거리 100종 데이터 및 카카오맵 위치 검색 연동">
 """
+# 💡 구글 소유권 확인 & 검색 최적화(SEO) 메타태그
+# (아래 YOUR_GOOGLE_CODE_HERE 부분에 구글 서치 콘솔에서 복사한 값만 넣어주세요)
+seo_html = """
+    <meta name="google-site-verification" content="YOUR_GOOGLE_CODE_HERE" />
+    <meta name="description" content="인생의 결정장애 해결사! 오늘 점심 메뉴, 저녁 메뉴, 주말 할거리 및 데이트 코스가 고민될 때 AI 룰렛으로 한 번에 결정하고 카카오맵 위치 검색까지 해보세요.">
+    <meta name="keywords" content="결정장애 해결사, 결정장애, AI 룰렛, 메뉴 추천, 오늘 뭐먹지, 주말에 뭐하지, 점심 추천, 룰렛 추천">
+    <meta name="author" content="결정장애 해결사">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="결정장애 해결사 - AI 룰렛 & 위치 기반 추천">
+    <meta property="og:description" content="결정하기 힘들 땐 AI 룰렛에게 맡겨보세요! 먹거리/놀거리 100종 데이터 및 카카오맵 위치 검색 연동">
+"""
+st.markdown(seo_html, unsafe_allow_html=True)
+
 st.markdown(seo_html, unsafe_allow_html=True)
 
 # 2. 메인 타이틀 및 안내 문구
